@@ -363,8 +363,13 @@ function unlockSong() {
   });
 }
 function showSong() {
-  document.getElementById("songFrame").classList.remove("hidden");
-  makeHearts();
+  const song = document.getElementById("songFrame");
+  song.classList.remove("hidden");
+  song.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+  makeHearts();
 }
 function openGift() {
   if (giftOpened) {
