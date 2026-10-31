@@ -6,178 +6,182 @@
 <title>Love Quest ♡</title>
 <style>
 * { box-sizing: border-box; }
+
 body {
-  margin: 0;
-  min-height: 100vh;
-  padding: 25px 14px 40px;
-  background: linear-gradient(160deg,#070b20,#17284b,#384b75);
-  color: #fff;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  overflow-x: hidden;
+  margin: 0;
+  min-height: 100vh;
+  padding: 25px 14px 40px;
+  background: linear-gradient(160deg, #070b20, #17284b, #384b75);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
 }
+
 #stars {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
 }
+
 .bg-star {
-  position: absolute;
-  color: #fff2c6;
-  animation: blink 2s infinite alternate;
+  position: absolute;
+  color: #fff2c6;
+  animation: blink 2s infinite alternate;
 }
+
 @keyframes blink {
-  from { opacity: .25; }
-  to { opacity: 1; }
+  from { opacity: .25; }
+  to { opacity: 1; }
 }
+
 .container {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 440px;
-  margin: auto;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
 }
+
 .panel {
-  background: #ffffff0c;
-  border: 1px solid #ffffff30;
-  border-radius: 25px;
-  padding: 25px 20px;
-  margin-bottom: 17px;
-  box-shadow: 0 10px 35px #00000015;
-  backdrop-filter: blur(5px);
+  background: #ffffff0c;
+  border: 1px solid #ffffff30;
+  border-radius: 25px;
+  padding: 25px 20px;
+  margin-bottom: 17px;
+  box-shadow: 0 10px 35px #00000015;
+  backdrop-filter: blur(5px);
 }
-.moon {
-  font-size: 52px;
-  margin: 5px;
-}
-.eyebrow {
-  color: #c6d4f8;
-  letter-spacing: 3px;
-  font-size: 11px;
-}
+
+.moon { font-size: 52px; margin: 5px; }
+.eyebrow { color: #c6d4f8; letter-spacing: 3px; font-size: 11px; }
 h1 { font-size: 29px; margin: 14px 0; }
 h2 { font-size: 21px; }
 p { line-height: 1.8; }
+
 button {
-  background: #dcd3ff;
-  color: #202447;
-  border: 0;
-  border-radius: 22px;
-  padding: 12px 19px;
-  margin: 6px 3px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: transform .2s, opacity .2s;
+  background: #dcd3ff;
+  color: #202447;
+  border: 0;
+  border-radius: 22px;
+  padding: 12px 19px;
+  margin: 6px 3px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform .2s, opacity .2s;
 }
+
 button:active { transform: scale(.96); }
-button:disabled {
-  opacity: .35;
-  cursor: not-allowed;
-}
+button:disabled { opacity: .35; cursor: not-allowed; }
+
 input {
-  width: 100%;
-  max-width: 270px;
-  padding: 13px;
-  border: 1px solid #ffffff55;
-  border-radius: 14px;
-  background: #ffffff12;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-  outline: none;
+  width: 100%;
+  max-width: 270px;
+  padding: 13px;
+  border: 1px solid #ffffff55;
+  border-radius: 14px;
+  background: #ffffff12;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
 }
+
 input::placeholder { color: #c5cde1; }
-.note {
-  color: #c5cde1;
-  font-size: 12px;
-}
+.note { color: #c5cde1; font-size: 12px; }
 .hidden { display: none; }
-.message {
-  color: #f1eaff;
-  line-height: 2;
-  white-space: pre-line;
-}
+.message { color: #f1eaff; line-height: 2; white-space: pre-line; }
+
 .progress {
-  height: 8px;
-  background: #ffffff20;
-  border-radius: 10px;
-  overflow: hidden;
-  margin: 15px 0;
+  height: 8px;
+  background: #ffffff20;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px 0;
 }
+
 #progressBar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg,#dcd3ff,#ffbde2);
-  transition: width .4s;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #dcd3ff, #ffbde2);
+  transition: width .4s;
 }
+
 .stage {
-  text-align: left;
-  padding: 15px;
-  margin: 10px 0;
-  border: 1px solid #ffffff20;
-  border-radius: 16px;
-  background: #ffffff08;
+  text-align: left;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ffffff20;
+  border-radius: 16px;
+  background: #ffffff08;
 }
+
 .stage p { font-size: 13px; color: #c5cde1; }
+
 #starGame {
-  position: relative;
-  height: 210px;
-  border-radius: 18px;
-  border: 1px dashed #ffffff40;
-  overflow: hidden;
-  background: #080e2638;
-  margin: 15px 0;
+  position: relative;
+  height: 210px;
+  border-radius: 18px;
+  border: 1px dashed #ffffff40;
+  overflow: hidden;
+  background: #080e2638;
+  margin: 15px 0;
 }
+
 .tapStar {
-  position: absolute;
-  font-size: 28px;
-  padding: 5px;
-  margin: 0;
-  background: transparent;
-  animation: float 2s infinite alternate;
+  position: absolute;
+  font-size: 28px;
+  padding: 5px;
+  margin: 0;
+  background: transparent;
+  animation: float 2s infinite alternate;
 }
+
 @keyframes float {
-  from { transform: translateY(3px); }
-  to { transform: translateY(-7px); }
+  from { transform: translateY(3px); }
+  to { transform: translateY(-7px); }
 }
-.envelope {
-  font-size: 70px;
-  cursor: pointer;
-  animation: bob 1.5s infinite alternate;
+
+.envelope, .gift {
+  font-size: 70px;
+  cursor: pointer;
+  animation: bob 1.5s infinite alternate;
 }
+
+.gift { font-size: 75px; }
+
 @keyframes bob {
-  to { transform: translateY(-7px); }
+  to { transform: translateY(-7px); }
 }
-.gift {
-  font-size: 75px;
-  cursor: pointer;
-  animation: bob 1.5s infinite alternate;
-}
+
 #songFrame iframe {
-  width: 100%;
-  height: 190px;
-  border: 0;
-  border-radius: 14px;
+  width: 100%;
+  height: 190px;
+  border: 0;
+  border-radius: 14px;
 }
- .heart {
-  position: fixed;
-  bottom: -30px;
-  z-index: 5;
-  pointer-events: none;
-  animation: rise 3.5s linear forwards;
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  z-index: 5;
+  pointer-events: none;
+  animation: rise 3.5s linear forwards;
 }
+
 @keyframes rise {
-  to {
-    transform: translateY(-100vh) rotate(35deg);
-    opacity: 0;
+  to {
+    transform: translateY(-100vh) rotate(35deg);
+    opacity: 0;
   }
 }
+
 footer {
-  color: #aab8db;
-  font-size: 12px;
-  padding: 10px;
+  color: #aab8db;
+  font-size: 12px;
+  padding: 10px;
 }
 </style>
 </head>
