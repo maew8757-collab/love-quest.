@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Quest ♡</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 25px 14px 40px;
+  background: linear-gradient(160deg,#070b20,#17284b,#384b75);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  overflow-x: hidden;
+}
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.bg-star {
+  position: absolute;
+  color: #fff2c6;
+  animation: blink 2s infinite alternate;
+}
+@keyframes blink {
+  from { opacity: .25; }
+  to { opacity: 1; }
+}
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+}
+.panel {
+  background: #ffffff0c;
+  border: 1px solid #ffffff30;
+  border-radius: 25px;
+  padding: 25px 20px;
+  margin-bottom: 17px;
+  box-shadow: 0 10px 35px #00000015;
+  backdrop-filter: blur(5px);
+}
+.moon {
+  font-size: 52px;
+  margin: 5px;
+}
+.eyebrow {
+  color: #c6d4f8;
+  letter-spacing: 3px;
+  font-size: 11px;
+}
+h1 { font-size: 29px; margin: 14px 0; }
+h2 { font-size: 21px; }
+p { line-height: 1.8; }
+button {
+  background: #dcd3ff;
+  color: #202447;
+  border: 0;
+  border-radius: 22px;
+  padding: 12px 19px;
+  margin: 6px 3px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform .2s, opacity .2s;
+}
+button:active { transform: scale(.96); }
+button:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+input {
+  width: 100%;
+  max-width: 270px;
+  padding: 13px;
+  border: 1px solid #ffffff55;
+  border-radius: 14px;
+  background: #ffffff12;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+}
+input::placeholder { color: #c5cde1; }
+.note {
+  color: #c5cde1;
+  font-size: 12px;
+}
+.hidden { display: none; }
+.message {
+  color: #f1eaff;
+  line-height: 2;
+  white-space: pre-line;
+}
+.progress {
+  height: 8px;
+  background: #ffffff20;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 15px 0;
+}
+#progressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg,#dcd3ff,#ffbde2);
+  transition: width .4s;
+}
+.stage {
+  text-align: left;
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ffffff20;
+  border-radius: 16px;
+  background: #ffffff08;
+}
+.stage p { font-size: 13px; color: #c5cde1; }
+#starGame {
+  position: relative;
+  height: 210px;
+  border-radius: 18px;
+  border: 1px dashed #ffffff40;
+  overflow: hidden;
+  background: #080e2638;
+  margin: 15px 0;
+}
+.tapStar {
+  position: absolute;
+  font-size: 28px;
+  padding: 5px;
+  margin: 0;
+  background: transparent;
+  animation: float 2s infinite alternate;
+}
+@keyframes float {
+  from { transform: translateY(3px); }
+  to { transform: translateY(-7px); }
+}
+.envelope {
+  font-size: 70px;
+  cursor: pointer;
+  animation: bob 1.5s infinite alternate;
+}
+@keyframes bob {
+  to { transform: translateY(-7px); }
+}
+.gift {
+  font-size: 75px;
+  cursor: pointer;
+  animation: bob 1.5s infinite alternate;
+}
+#songFrame iframe {
+  width: 100%;
+  height: 190px;
+  border: 0;
+  border-radius: 14px;
+}
+ .heart {
+  position: fixed;
+  bottom: -30px;
+  z-index: 5;
+  pointer-events: none;
+  animation: rise 3.5s linear forwards;
+}
+@keyframes rise {
+  to {
+    transform: translateY(-100vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+footer {
+  color: #aab8db;
+  font-size: 12px;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div class="container">
+  <section class="panel">
+    <div class="moon">🌙</div>
+    <div class="eyebrow">A SECRET WORLD FOR TWO</div>
+   <h1>Love Quest ♡</h1>
+    <p>To Pancoke 💌</p>
+    <p class="note">ภารกิจพิเศษสำหรับคนพิเศษเท่านั้น</p>
+<div class="progress">
+  <div id="progressBar"></div>
+</div>
+<p id="progressText" class="note">ปลดล็อกแล้ว 0 / 4 ด่าน</p>
+  </section>
+  <!-- ด่าน 1 -->
+  <section class="panel" id="stage1">
+    <h2>🔐 ด่านที่ 1: Secret Question</h2>
+    <p>คำถามลับข้อแรก...</p>
+    <p>คนที่สร้างเว็บนี้ตั้งใจทำให้ใครนะ? 💗</p>
+<input id="answer" placeholder="พิมพ์คำตอบที่นี่"
+  autocomplete="off">
+<br>
+<button onclick="checkAnswer()">ปลดล็อก ♡</button>
+<p id="answerResult" class="note"></p>
+  </section>
+  <!-- ด่าน 2 -->
+  <section class="panel hidden" id="stage2">
+    <h2>⭐ ด่านที่ 2: Collect the Stars</h2>
+    <p>แตะดาวให้ครบ 5 ดวงเพื่อไปต่อ</p>
+    <p>เก็บดาวแล้ว: <b id="starCount">0</b> / 5</p>
+<div id="starGame"></div>
+<p id="starMessage" class="note">
+  ดาวแต่ละดวงแทนความทรงจำดี ๆ ของเรา ✨
+</p>
+  </section>
+  <!-- ด่าน 3 -->
+  <section class="panel hidden" id="stage3">
+    <h2>💌 ด่านที่ 3: A Letter for You</h2>
+    <p>เธอมาถึงตรงนี้แล้วนะ...</p>
+    <p>แตะซองจดหมายเพื่อเปิดข้อความลับ</p>
+<div class="envelope" onclick="openLetter()">💌</div>
+<div id="letter" class="message hidden">
+  <p>
+ 11 เดือนละอ้วนนน อุอิ
+เดือนนี้เราอาจจะไม่มีไรให้แฟน 
+แต่เรามีใจให้นะ26252552525 หยอกก
+เราตั้งใจทำเว็บนี้ให้แฟนนะไม่รู้มันจาดีแบบที่เราคิดรึป่าว<br>
+เธอไม่ต้องกัวเราเบื่อนะ เรารักเธอตลอด
+จาอยู่กับแฟนไปแบบฟอเอเว่อ
+ขอบคุณที่ดีกับเรามาตลอดนะ<br>
+อย่าแอบเคียดไรเย้อน้า ไม่อยากให้มีน้ำตา
+เราอยู่ตรงนี้ข้างๆแฟนตะเหม๋อมีไรก็บอกเราได้ 
+อย่าเก็บไว้คนเดียวนะมันม่ายดี เข้าใจเป่า<br>
+รักแพนโค้กนะ ♡ <br><br>    
+  </p>
+    <button onclick="unlockSong()">ไปด่านสุดท้าย 🎁</button>
+</div>
+  </section>
+  <!-- ด่าน 4 -->
+  <section class="panel hidden" id="stage4">
+    <h2>🎵 เพลง</h2>
+    <p>เพลงนี้เหมาะกับเธอจิงจิงนะ เรายกให้เธอ♡</p>
+<div id="songFrame" class="hidden">
+  <iframe
+    src="https://www.youtube.com/embed/cAaPHNeLTM4?playsinline=1"
+    title="ดูดฝุ่น (home.)"
+    allow="encrypted-media; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</div>
+<button onclick="showSong()">เปิดฟังดูสิ🎶</button>
+<hr style="border-color:#ffffff20;margin:24px 0;">
+<h2>🎁 Final Surprise</h2>
+<p>มีของขวัญชิ้นสุดท้ายรออยู่...</p>
+<div class="gift" onclick="openGift()">🎁</div>
+<div id="finalMessage" class="message hidden">
+  <h2>YOU ARE MY FAVORITE PERSON ♡</h2>
+  <p>
+    ภารกิจสำเร็จแล้ว! 🌙
+    ขอบคุณที่เปิดมายั้นจบ ถึงแม้มันจาจบ
+    แต่เรื่องราวของเรายังมีต่อไปอีกนะ เยรดโด้525252525
+    END OF QUEST — BEGINNING OF OUR STORY ✨
+  </p>
+</div>
+  </section>
+  <footer>made with love, just for Pancoke ♡</footer>
+</div>
+<script>
+// สร้างดวงดาวบนพื้นหลัง
+ for (let i = 0; i < 45; i++) {
+  const star = document.createElement("span");
+  star.className = "bg-star";
+  star.textContent = "✦";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.fontSize = (Math.random() * 9 + 4) + "px";
+  star.style.animationDelay = Math.random() * 2 + "s";
+  document.getElementById("stars").appendChild(star);
+}
+let unlocked = 0;
+let collected = 0;
+let letterOpened = false;
+let giftOpened = false;
+function updateProgress() {
+  document.getElementById("progressBar").style.width =
+    (unlocked / 4 * 100) + "%";
+  document.getElementById("progressText").textContent =
+    "ปลดล็อกแล้ว " + unlocked + " / 4 ด่าน";
+}
+function unlockStage(number) {
+  document.getElementById("stage" + number).classList.remove("hidden");
+  unlocked = Math.max(unlocked, number);
+  updateProgress();
+  makeHearts();
+}
+function checkAnswer() {
+  const answer = document.getElementById("answer").value
+    .trim().toLowerCase().replace(/\s/g, "");
+  const accepted = [
+    "แพนโค้ก"
+  ];
+  if (accepted.includes(answer)) {
+    document.getElementById("answerResult").textContent =
+      "ถูกต้องแล้ว 💗 ยินดีต้อนรับเข้าสู่โลกของเรา!";
+    unlockStage(2);
+    document.getElementById("stage2").scrollIntoView({
+      behavior: "smooth", block: "center"
+    });
+    startStarGame();
+  } else {
+    document.getElementById("answerResult").textContent =
+      "ยังไม่ใช่น้า ลองตอบอีกครั้งนะ 🌙";
+   }
+}
+function startStarGame() {
+  const game = document.getElementById("starGame");
+  if (game.dataset.started) return;
+  game.dataset.started = "yes";
+  for (let i = 0; i < 9; i++) {
+    const star = document.createElement("button");
+    star.className = "tapStar";
+    star.textContent = "⭐";
+    star.style.left = (5 + Math.random() * 80) + "%";
+    star.style.top = (5 + Math.random() * 75) + "%";
+    star.onclick = function() {
+      if (star.dataset.collected) return;
+      star.dataset.collected = "yes";
+      star.textContent = "✨";
+      star.style.opacity = ".3";
+      star.disabled = true;
+      collected++;
+      document.getElementById("starCount").textContent = collected;
+      if (collected >= 5) {
+        document.getElementById("starMessage").textContent =
+          "เก็บดาวครบแล้ว! ด่านจดหมายถูกปลดล็อก 💌";
+        unlockStage(3);
+        document.getElementById("stage3").scrollIntoView({
+          behavior: "smooth", block: "center"
+        });
+      }
+    };
+    game.appendChild(star);
+  }
+}
+function openLetter() {
+  if (letterOpened) return;
+  letterOpened = true;
+
+  document.getElementById("letter").classList.remove("hidden");
+  makeHearts();
+}
+function unlockSong() {
+  unlockStage(4);
+  document.getElementById("stage4").scrollIntoView({
+    behavior: "smooth", block: "center"
+  });
+}
+function showSong() {
+  document.getElementById("songFrame").classList.remove("hidden");
+  makeHearts();
+}
+function openGift() {
+  if (giftOpened) {
+    document.getElementById("finalMessage").classList.toggle("hidden");
+    return;
+  }
+  giftOpened = true;
+  document.getElementById("finalMessage").classList.remove("hidden");
+  makeHearts();
+}
+function makeHearts() {
+  for (let i = 0; i < 12; i++) {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = Math.random() > .5 ? "♡" : "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 18 + 15) + "px";
+    heart.style.animationDelay = Math.random() + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 5000);
+  }
+}
+updateProgress();
+</script>
+</body>
+</html>
